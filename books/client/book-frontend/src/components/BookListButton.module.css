@@ -1,0 +1,21 @@
+.editButton{
+    background-color: rgb(47, 180, 47);
+    width: 140px;
+    height: 30px;
+    border : 1px solid black;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    color: white;
+}
+
+
+.removeButton{
+    background-color: red;
+    width: 140px;
+    height: 30px;
+    border : 1px solid black;
+    border-radius: 5px;
+    color: white;
+}
+

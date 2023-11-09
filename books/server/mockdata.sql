@@ -69,8 +69,8 @@ insert into author_books (author_books_id, author_id, book_id) values (8, 8, 2);
 insert into author_books (author_books_id, author_id, book_id) values (9, 2, 2);
 insert into author_books (author_books_id, author_id, book_id) values (10, 7, 9);
 
-insert into users_books (users_books_id, user_id, book_id) values (1, 7, 2);
-insert into users_books (users_books_id, user_id, book_id) values (2, 9, 6);
+insert into users_books (users_books_id, user_id, book_id) values (1, 2, 1);
+insert into users_books (users_books_id, user_id, book_id) values (2, 2, 2);
 insert into users_books (users_books_id, user_id, book_id) values (3, 1, 10);
 insert into users_books (users_books_id, user_id, book_id) values (4, 9, 3);
 insert into users_books (users_books_id, user_id, book_id) values (5, 9, 2);

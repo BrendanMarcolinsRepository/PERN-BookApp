@@ -24,6 +24,17 @@ const getABook = async (title) => {
 
 }
 
+const getABookById = async (id) => {
+
+    const client = await pool.connect()
+
+    const resultDatabase = await client.query("SELECT * FROM book WHERE book_id = $1", [id]);
+    
+    return resultDatabase
+
+
+}
+
 //create a specific book for the database layer
 const createBook = async (request) => {
 
@@ -196,5 +207,6 @@ module.exports = {
     deleteAllBooks, 
     createBook,
     publisherAndBookCreate,
-    genreAndBookCreate
+    genreAndBookCreate,
+    getABookById
 };

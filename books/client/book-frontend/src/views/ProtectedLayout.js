@@ -7,16 +7,16 @@ const ProtectedLayout = () => {
     const outlet = useOutlet();
 
     if(!user){
-        return <Navigate to={"/login"} />;
+        return <Navigate to={"/"} />;
     }
 
     return (
         <div>
             <header>
                 <nav>
-                    <Link to={"/home"} Home></Link>
-                    <Link to={"/profile"} Profile></Link>
-                    <Link to={"/setting"} Settings></Link>
+                    <Link to={"/home"} home></Link>
+                    <Link to={"/profile"} profile></Link>
+                    <Link to={"/setting"} settings></Link>
                 </nav>
             </header>
 

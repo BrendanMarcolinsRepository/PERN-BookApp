@@ -1,0 +1,27 @@
+.bookContainer{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    align-items: center;
+    justify-items: center;
+
+
+}
+
+.bookButton{
+    grid-column-start: 5;
+    display: flex;
+    flex-direction: column;
+}
+
+.bookContainer:after{
+    content: "";
+    display: block;
+    height: 5px;
+    width: 100%;
+    margin: 10px;
+    background: gray;
+    border-radius: 10px;
+    grid-column: span 6;
+
+}
+

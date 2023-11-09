@@ -17,6 +17,20 @@ const getUserByUsername = async (username) => {
 
 }
 
+const getUserBooks = async (id) => {
+
+    if(id){
+        const userBooks = await UserReposistory.getUserBooks(id);
+
+        console.log("working 2 - user id " + userBooks.rows[0].user_id )
+
+
+        return userBooks;
+    }
+
+}
+
 module.exports = {
-    getUserByUsername
+    getUserByUsername,
+    getUserBooks
 };

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 
-axios.defaults.baseURL = 'http://localhost:5000';
+axios.defaults.baseURL = 'https://localhost:7158';
 
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
@@ -22,10 +22,13 @@ export const request = (method, url, data) => {
         headers = {'Authorization': `Bearer ${getAuthToken()}`};
     }
 
+    console.log(url)
+
     return axios({
         method: method,
         url: url,
         headers: headers,
-        data: data
+        params : {id : data},    
+       
     });
 };

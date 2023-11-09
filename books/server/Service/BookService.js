@@ -38,6 +38,23 @@ const getABook = async (title) => {
 
 }
 
+//get a specific book by Id
+const getABookById = async (id) => {
+
+    if(id){
+ 
+         const resultRepository = await BookReposistory.getABookById(id);
+ 
+         return resultRepository;
+ 
+    }else{
+ 
+         return undefined;
+    }
+ 
+ 
+ }
+
 //create a specific book for the resposistory layer
 
 const createABook = async (request) => {
@@ -127,4 +144,4 @@ const deleteAllBooks = async () => {
 
 }
 
-module.exports = {getAllBooks, getABook, updateABook, deleteABook, deleteAllBooks,createABook, publisherAndBookCreate};
+module.exports = {getAllBooks, getABook, updateABook, deleteABook, deleteAllBooks,createABook, publisherAndBookCreate, getABookById};

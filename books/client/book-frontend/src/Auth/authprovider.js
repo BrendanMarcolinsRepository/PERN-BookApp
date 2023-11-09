@@ -6,17 +6,19 @@ import useLocalStorage from '../Utils/useLocalStorage';
 const AuthContext =  createContext();
 
 export const AuthProvider = ({children, userData}) => {
-
-    console.log("here 2222")
-
     const [user, setUser] = useLocalStorage("user", userData);
 
     const navigate = useNavigate();
 
     const login = async (data) => {
+
+        console.log(`${data} the data is here`);
+
         setUser(data);
         navigate("/dashboard/home");
     }
+
+ 
 
     const logout = async () => {
         setUser(null);

@@ -19,6 +19,15 @@ const getUserByUsername = async (username) => {
 
 }
 
+const getUserBooks = async (id) => {
+    const client = await pool.connect();
+
+    const resultUserbooks = await client.query("SELECT * FROM users_books WHERE user_id = $1", [id])
+
+    return resultUserbooks;
+}
+
 module.exports = {
-    getUserByUsername
+    getUserByUsername,
+    getUserBooks
 };

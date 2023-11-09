@@ -5,6 +5,7 @@ const pool = require('./db');
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const BookService = require('./Service/BookService')
+const UserService = require('./Service/UserService')
 
 
 
@@ -143,13 +144,9 @@ index.post("/book", async (request, result) => {
 
     try{
 
-       
-        
         const resultBookService = await BookService.createABook(request);
 
         return result.json(resultBookService);
-        
-        
         
 
     }catch(err){
@@ -170,6 +167,39 @@ index.get('/books', async (request, result) => {
     }
 })
 
+index.get('/Userbooks/:id', async (request, result) => {
+
+    try{
+
+        const {id} =  request.params;
+
+        console.log("working " + id);
+
+        const userService = await UserService.getUserBooks(id);
+
+        console.log("worked length" + userService.rowCount);
+
+        const resultBooks = [];
+
+        for(let index = 0; index < userService.rowCount; index++){
+            const resultBookService = await BookService.getABookById(userService.rows[index].book_id)
+            
+            resultBooks.push({
+                title : resultBookService.rows[0].title,
+                description : resultBookService.rows[0].description
+            });
+        }
+
+        console.log("worked length 2" + resultBooks.length);
+        return result.json(resultBooks)
+
+
+    }catch(error){
+        return result.json(error);
+    }
+
+})
+
 //get a book to read
 
 index.get('/book/:title', async(request, result) => {
@@ -177,7 +207,7 @@ index.get('/book/:title', async(request, result) => {
 
     try {
 
-        const {title} = await request.params;
+        const {title} = request.params;
 
         if(title !== undefined){
            const serviceResult = await BookService.getABook(title)
@@ -192,6 +222,8 @@ index.get('/book/:title', async(request, result) => {
     }
 
 })
+
+
 
 //update a book to read
 index.put('/book', async (request, result) => {

@@ -5,13 +5,13 @@ import {useAuth} from '../Auth/authprovider'
 
 
 
+
 const Login = () => {
 
-    const isStrongUsername = /^[0-9A-Za-z]{6,16}$/;
-
+    const isStrongUsername = /^[0-9A-Za-z]{1,16}$/;
     const isStrongPassword = /^(?=.*?[0-9])(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[^0-9A-Za-z]).{8,32}$/;
 
-    const [username, setUsername] = useState('')
+    const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [errorLogin, setErrorLogin] = useState(false)
 
@@ -25,12 +25,12 @@ const Login = () => {
 
     }
 
-    const usernameHandler = (event) => {
+    const emailHandler = (event) => {
 
         errorHandler()
         
         console.log(event.target.value);
-        setUsername(event.target.value);
+        setEmail(event.target.value);
     }
 
     const passwordHandler = (event) => {
@@ -40,19 +40,20 @@ const Login = () => {
         setPassword(event.target.value);
     }
 
-    const loginHandler = (event) => {
+    const  loginHandler = async (event) => {
 
         event.preventDefault();
 
-        const isValidUsername = isStrongUsername.test(username)
+        const isValidUsername = isStrongUsername.test(email)
         const isValidPassword = isStrongPassword.test(password)
 
         console.log(`${isValidUsername}  result`)
         console.log(`${isValidPassword}  result`)
 
-        if(isValidUsername && isValidPassword){
-            console.log("ready");
-            const result = sendData();
+        if( isValidPassword){
+            const result = await sendData();
+
+            console.log(`${result} result`)
 
             if(result){
                 login(result)
@@ -73,17 +74,37 @@ const Login = () => {
 
     const sendData = async () => {
 
-        const response = await request("POST","/login", {username, password})
+    //const response = await request("POST","/api/Login", {email, password})
 
-       if(response){
-           console.log(response.data)
-           setAuthHeader(response.data.token)
-           return response.data;
+    console.log("response awaits");
+
+       const response = await fetch('https://localhost:7158/Login',{
+                method:'POST',
+                headers:{
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body:JSON.stringify({
+                    username: email,
+                    password: password
+                })
+        })
+
+        console.log("response finished");
+
+
+       if(response.ok){
+            const user = await response.json();
+
+           console.log(`here right now ${user}`);
+           setAuthHeader(user.jwtToken)
+           return user;
           
        }
 
-       if(!response){
-           setAuthHeader(null);
+       if(!response.ok){
+           //setAuthHeader(null);
+           console.log("response error");
            return false;
        }
 
@@ -100,15 +121,9 @@ const Login = () => {
         <div>
             <main>
 
-                <div className={styles.divappname}>
-                    <h1>Bookkeeper</h1>
+                <div className={styles.divpagetitle}>
+                    <h1>Login</h1>
                     
-                </div>
-
-
-                <div className={styles.divtitle}>
-                    <h1 >Login</h1>
-                    <h2>No account? Register Here</h2>
                 </div>
 
                 <form onSubmit={loginHandler}>
@@ -117,10 +132,10 @@ const Login = () => {
                        
                         <input 
                             type="text"
-                            id = 'username'
-                            name = 'username'
-                            required onChange={usernameHandler}
-                            placeholder="Username..."
+                            id = 'email'
+                            name = 'email'
+                            required onChange={emailHandler}
+                            placeholder="Email..."
                           
 
                         />
@@ -139,6 +154,7 @@ const Login = () => {
                         <input
                             type = 'submit'
                             value = "Submit"
+                            name = 'submit'
                         />
 
                         {errorLogin && errorInformationHandler}
