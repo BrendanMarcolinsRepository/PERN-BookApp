@@ -55,7 +55,7 @@ const HomePage = () => {
                 <li key = {index} className={styles.bookContainer}>
                     
                     <div>
-                        <img src='https://m.media-amazon.com/images/I/91XrTM0aCML._AC_UF894,1000_QL80_.jpg' alt = {content.name} width="220" height="270"/>
+                        <img src='https://m.media-amazon.com/images/I/512YtzCopfL.jpg' alt = {content.name} width="200" height="270"/>
                     </div>
                     
                     <div>
@@ -65,11 +65,7 @@ const HomePage = () => {
                         
                     </div>
                     <div  className={styles.bookButton}>
-                        <BookListButton 
-                            styles = {buttonStyles.editButton}
-                            name = {"edit"}
-                        
-                        />
+                       
                         <BookListButton 
                             styles = {buttonStyles.removeButton}
                             name = {"remove"}

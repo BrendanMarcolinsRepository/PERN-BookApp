@@ -1,0 +1,69 @@
+
+    
+.navHeaderContainer{
+    
+    display: inline-flexbox;
+    justify-content: center;
+    align-items: center; 
+    z-index: 20;
+ 
+    
+}
+.navheader {
+ 
+    display: flex;
+    
+}
+
+.navLinks{
+    list-style: none;
+    display: inline-flex;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: black;
+    
+}
+
+.navLinks:hover{
+
+    cursor: pointer;
+    text-decoration: wavy;
+    color: brown;
+
+}
+
+
+
+.dropdownbooksmenu{
+    background: #c8caca;
+    position:absolute;
+    margin-top: 35px;
+  
+    width: 30%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.navLinksDropMenu{
+    
+    
+    list-style: none;
+    display: flex;
+    padding: 30px 35px;
+    text-decoration: none;
+    color: black;
+    transition: all linear 0.3s;
+    position: relative;
+    z-index:1;
+    border-bottom: 1px solid black
+        
+}
+
+.navLinksDropMenu:hover{
+    
+    cursor: pointer;
+    text-decoration: underline;
+    color: brown;
+}
+
+
+
